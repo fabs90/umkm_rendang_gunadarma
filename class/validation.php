@@ -30,7 +30,12 @@ class validation
                         if (strlen(input::getValue($item)) > $rule_values) {
                             $this->addError("panjang maksimal $item adalah $rule_values");
                         }
-
+                        break;
+                    case 'match':
+                        // Cek apakah inputan password sama dengan yang di verify
+                        if (input::getValue($item) != input::getValue($rule_values)) {
+                            $this->addError("password yang diketik tidak sama, mohon ulangi");
+                        }
                         break;
                     default:
                         break;
