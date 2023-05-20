@@ -8,25 +8,32 @@ if (input::getValue('submit_btn')) {
     // validasi dulu datanya, sesuai dengan ketentuan tidak
     $validation = $validation->check([
         'username' => ['required' => true, 'max' => 50, 'min' => 3],
-        'password' => ['required' => true, 'max' => 30, 'min' => 3],
+        'password' => ['required' => true, 'max' => 30, 'min' => 5],
     ]);
 
-    // Kalo sesuai langsung register data tersebut ke DB
-    if ($validation->passed()) {
+    /* Mencegah username sama saat register */
+    // Kalau username yg diinput sama
+    if ($user->cek_nama(input::getValue('username'))) {
+        $errors[] = "Username sudah terdaftar, coba username lain";
 
-        /* Registering a new user by calling the `register_user` method of the `user` object and passing an
-        array of user data as an argument. The user data includes the username and a hashed password. */
-        $user->register_user(array(
-            'username' => input::getValue('username'),
-            'password' => password_hash(input::getValue('password'), PASSWORD_ARGON2ID),
-        ));
-
-        session::set('username', input::getValue('username'));
-        header('Location:../admin/sidebar.php');
     } else {
-        $errors = $validation->error();
-    }
 
+        // Kalo sesuai langsung register data tersebut ke DB
+        if ($validation->passed()) {
+
+            /* Registering a new user by calling the `register_user` method of the `user` object and passing an
+            array of user data as an argument. The user data includes the username and a hashed password. */
+            $user->register_user(array(
+                'username' => input::getValue('username'),
+                'password' => password_hash(input::getValue('password'), PASSWORD_ARGON2ID),
+            ));
+
+            session::set('username', input::getValue('username'));
+            header('Location:../admin/sidebar.php');
+        } else {
+            $errors = $validation->error();
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
