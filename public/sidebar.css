@@ -1,0 +1,328 @@
+/* All elements */
+* {
+  font-family: "Ubuntu", sans-serif;
+  /* Clear html */
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  /* biar garis screen layar sidebar penuh sampe bawahs */
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: #111827;
+  width: 260px;
+  /* Ngatur padding elements didlam sidebar */
+  padding: 24px;
+  display: flex;
+  /* Biar semua element sidebar kebawah */
+  flex-direction: column;
+
+  /* Agar padding tidak mempengaruhi width */
+  box-sizing: border-box;
+  transition: all ease-in 0.3s;
+}
+
+.sidebar.hide {
+  width: 87px;
+  transition: all ease-out 0.3s;
+}
+
+.sidebar a {
+  text-decoration: none;
+}
+
+/* Settings font sidebar */
+.sidebar .header .list-item .description-header {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 16px;
+  color: #ffffff;
+  padding: 0 0 0 12px;
+  margin-left: 12px;
+}
+
+/* Sidebar yang mempunyai kelas hide */
+
+/* Menyembunyikan semua teks desktipsi icon */
+.sidebar.hide .list-item .description-header {
+  display: none;
+}
+
+/* Hide image */
+.sidebar.hide .header .illustration {
+  display: none;
+}
+
+.sidebar.hide hr {
+  width: 50px;
+}
+
+/* Settings icon */
+.sidebar.hide .main .list-item {
+  width: 55px;
+}
+
+.sidebar.hide .footer .list-item {
+  width: 55px;
+}
+
+.sidebar .header .list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 10px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 212px;
+  margin: 0 0 10px 0;
+}
+
+.sidebar .header .illustration {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  margin: 10px 0 22px 0;
+  box-sizing: border-box;
+}
+
+.icon {
+  margin-left: 10px;
+  color: #ffffff;
+}
+
+.sidebar .main .list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 10px;
+  box-sizing: border-box;
+  width: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.sidebar .main .list-item:hover {
+  background-color: #ff9900;
+  border-radius: 8px;
+  transition: all ease-in 0.2s;
+}
+
+.sidebar .main .list-item .description-header {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #ffffff;
+  margin-left: 12px;
+}
+
+.sidebar .footer .list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 10px;
+  box-sizing: border-box;
+  width: 212px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.sidebar .footer .list-item:first-child.list-item:hover {
+  background-color: #da2e10;
+  border-radius: 8px;
+  transition: all ease-in 0.2s;
+}
+
+.sidebar .footer .list-item .description-header {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #ffffff;
+  margin-left: 12px;
+}
+
+.main-content {
+  background-color: #eeeeee;
+
+  /* biar garis main-content full nutupin diluar sidebar */
+  height: 100vh;
+  width: 100vw;
+}
+
+.judul-category {
+  margin: 10px 0 5px 0;
+}
+
+.judul-category h5 {
+  color: gray;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.main-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* Table */
+.table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 18px 0 0 0;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.main-content hr {
+  margin-top: 15px;
+}
+
+/* End of Table */
+
+/* Toggle Button */
+#menu-button {
+  margin: 15px 0 0 0;
+  width: 32px;
+  position: absolute;
+  overflow: hidden;
+}
+
+#menu-checkbox {
+  display: none;
+}
+
+#menu-label {
+  position: relative;
+  display: block;
+  height: 20px;
+  cursor: pointer;
+}
+
+#hamburger,
+#menu-label::after,
+#menu-label::before {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: whitesmoke;
+}
+
+#menu-label::after,
+#menu-label::before {
+  content: "";
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) left;
+}
+
+#menu-label:before {
+  top: 0;
+}
+
+#menu-label:after {
+  top: 8px;
+}
+
+#hamburger {
+  top: 16px;
+}
+
+#hamburger::before {
+  content: "MENU";
+  position: absolute;
+  top: 5px;
+  right: 0;
+  left: 0;
+  color: whitesmoke;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#menu-checkbox:checked + #menu-label::before {
+  left: -39px;
+}
+
+#menu-checkbox:checked + #menu-label::after {
+  left: 39px;
+}
+
+#menu-checkbox:checked + #menu-label #hamburger::before {
+  animation: moveUpThenDown 0.8s ease 0.2s forwards,
+    shakeUp 0.8s ease 0.2s forwards, shakeDown 0.2s ease 0.8s forwards;
+}
+
+@keyframes moveUpThenDown {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -27px;
+  }
+  100% {
+    top: -14px;
+  }
+}
+
+@keyframes shakeUp {
+  0% {
+    transform: rotateZ(0);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  50% {
+    transform: rotateZ(0);
+  }
+  75% {
+    transform: rotateZ(10deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+@keyframes shakeDown {
+  0% {
+    transform: rotateZ(0);
+  }
+  80% {
+    transform: rotateZ(3deg);
+  }
+  90% {
+    transform: rotateZ(-3deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .main-header {
+    display: block;
+    /* tata letak alternatif atau properti lain */
+  }
+
+  .table {
+    display: block;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+  th,
+  td {
+    display: block;
+  }
+}
