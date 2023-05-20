@@ -12,7 +12,7 @@ if (input::getValue('submit_btn')) {
     ]);
 
     /* Mencegah username sama saat register */
-    // Kalau username yg diinput sama
+    // Kalau ada data dengan username yg sama di database
     if ($user->cek_nama(input::getValue('username'))) {
         $errors[] = "Username sudah terdaftar, coba username lain";
 

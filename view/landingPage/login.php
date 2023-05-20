@@ -15,7 +15,7 @@ if (input::getValue('submit_btn')) {
     // Kalo sesuai langsung register data tersebut ke DB
     if ($validation->passed()) {
 
-        // Cek nama dari database dulu
+        // Cek nama dari database dulu, kalo ada datanya
         if ($user->cek_nama(input::getValue('username'))) {
 
             /* Kalo username ada di datbase, baru nama & password dibandingin sama data yang ada di database */
