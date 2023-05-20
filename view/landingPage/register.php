@@ -9,6 +9,7 @@ if (input::getValue('submit_btn')) {
     $validation = $validation->check([
         'username' => ['required' => true, 'max' => 50, 'min' => 3],
         'password' => ['required' => true, 'max' => 30, 'min' => 5],
+        'confirm_password' => ['required' => true, 'match' => 'password'],
     ]);
 
     /* Mencegah username sama saat register */
@@ -28,6 +29,7 @@ if (input::getValue('submit_btn')) {
                 'password' => password_hash(input::getValue('password'), PASSWORD_ARGON2ID),
             ));
 
+            session::flash('register', 'Selamat anda berhasil mendaftar');
             session::set('username', input::getValue('username'));
             header('Location:../admin/sidebar.php');
         } else {
@@ -112,6 +114,10 @@ if (input::getValue('submit_btn')) {
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm_password" required>
             </div>
             <!-- <div class="form-group">
                 <label for="confirm_password">Confirm Password:</label>

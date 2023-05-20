@@ -2,6 +2,10 @@
 require_once "c:/xampp/htdocs/Project/admin_interface_umkm/core/init.php";
 $db = new connection();
 
+if (session::exist('login')) {
+    session::phpAlert(session::flash('login'));
+}
+
 // Pengganti if(isset($_POST['btn_login]))
 if (input::getValue('submit_btn')) {
     $user = new User();
@@ -20,6 +24,8 @@ if (input::getValue('submit_btn')) {
 
             /* Kalo username ada di datbase, baru nama & password dibandingin sama data yang ada di database */
             if ($user->login_user(input::getValue('username'), input::getValue('password'))) {
+                // Memberikan pesan error utk ditampilkan kepada variabel session['login']
+                session::flash('login', 'Selamat anda berhasil login');
                 session::set('username', input::getValue('username'));
                 header('Location:../admin/sidebar.php');
             } else {
@@ -51,7 +57,7 @@ if (input::getValue('submit_btn')) {
         <div class="forms-container">
             <div class="signin-signup">
                 <form action="login.php" class="sign-in-form" method="POST">
-                    <h2 class="title">Login terlebih dahulu</h2>
+                    <h2 class=" title">Login terlebih dahulu</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input type="text" placeholder="Username" name="username" />

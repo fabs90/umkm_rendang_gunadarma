@@ -3,7 +3,18 @@ require_once "c:/xampp/htdocs/Project/admin_interface_umkm/core/init.php";
 
 // Cek, kalau variabel session username blom di set maka balik ke form login
 if (!session::exist('username')) {
+    // Sebelum redirect kasih flash message
+    session::flash('login', 'Anda harus login!');
     header('Location:../landingPage/login.php');
+}
+
+if (session::exist('register')) {
+    session::phpAlert(session::flash('register'));
+}
+
+// Menampilkan pesan yg ada pada session['login']
+if (session::exist('login')) {
+    session::phpAlert(session::flash('login'));
 }
 
 ?>
