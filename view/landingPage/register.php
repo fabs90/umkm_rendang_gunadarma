@@ -31,7 +31,7 @@ if (input::getValue('submit_btn')) {
 
             session::flash('register', 'Selamat anda berhasil mendaftar');
             session::set('username', input::getValue('username'));
-            header('Location:../admin/sidebar.php');
+            Redirect::to('../admin/sidebar');
         } else {
             $errors = $validation->error();
         }

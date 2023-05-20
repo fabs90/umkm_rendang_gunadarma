@@ -5,7 +5,8 @@ require_once "c:/xampp/htdocs/Project/admin_interface_umkm/core/init.php";
 if (!session::exist('username')) {
     // Sebelum redirect kasih flash message
     session::flash('login', 'Anda harus login!');
-    header('Location:../landingPage/login.php');
+    Redirect::to('../LandingPage/login');
+
 }
 
 if (session::exist('register')) {

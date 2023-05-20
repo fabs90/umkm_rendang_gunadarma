@@ -27,7 +27,8 @@ if (input::getValue('submit_btn')) {
                 // Memberikan pesan error utk ditampilkan kepada variabel session['login']
                 session::flash('login', 'Selamat anda berhasil login');
                 session::set('username', input::getValue('username'));
-                header('Location:../admin/sidebar.php');
+                // header('Location:../admin/sidebar.php');
+                Redirect::to('../admin/sidebar');
             } else {
                 $errors[] = "Gagal login";
             }
@@ -60,11 +61,11 @@ if (input::getValue('submit_btn')) {
                     <h2 class=" title">Login terlebih dahulu</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" name="username" />
+                        <input type="text" placeholder="Username" name="username" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" name="password" />
+                        <input type="password" placeholder="Password" name="password" required />
                     </div>
                     <?php if (!empty($errors)) {?>
                     <div class="errors">
@@ -76,11 +77,11 @@ if (input::getValue('submit_btn')) {
                     <?php }?>
                     <button type="submit" class="btn-solid" name="submit_btn" value="masuk">Masuk</button>
 
-
+                    <!--
                     <p class="social-text">atau masuk melewati platform kita</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
+                            <i class="fab fa-github"></i>
                         </a>
                         <a href="#" class="social-icon">
                             <i class="fab fa-twitter"></i>
@@ -91,7 +92,7 @@ if (input::getValue('submit_btn')) {
                         <a href="#" class="social-icon">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>
