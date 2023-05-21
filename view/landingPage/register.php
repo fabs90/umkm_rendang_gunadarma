@@ -2,13 +2,13 @@
 require_once "c:/xampp/htdocs/Project/admin_interface_umkm/core/init.php";
 $db = new connection();
 // Pengganti if(isset($_POST['btn_login]))
-if (input::getValue('submit_btn')) {
+if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))) {
     $user = new User();
     $validation = new validation();
     // validasi dulu datanya, sesuai dengan ketentuan tidak
     $validation = $validation->check([
-        'username' => ['required' => true, 'max' => 50, 'min' => 3],
-        'password' => ['required' => true, 'max' => 30, 'min' => 5],
+        'username' => ['required' => true, 'max' => 30, 'min' => 7],
+        'password' => ['required' => true, 'max' => 30, 'min' => 8],
         'confirm_password' => ['required' => true, 'match' => 'password'],
     ]);
 
@@ -43,64 +43,7 @@ if (input::getValue('submit_btn')) {
 
 <head>
     <title>Register Form</title>
-    <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f1f1f1;
-    }
-
-    .container {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .container h2 {
-        text-align: center;
-    }
-
-    .container .form-group {
-        margin-bottom: 15px;
-    }
-
-    .container .form-group label {
-        display: block;
-        font-weight: bold;
-    }
-
-    .container .form-group input {
-        width: 100%;
-        padding: 5px;
-        font-size: 16px;
-        border-radius: 3px;
-        border: 1px solid #ccc;
-    }
-
-    .container .form-group input[type="submit"] {
-        background-color: #4CAF50;
-        color: #fff;
-        cursor: pointer;
-    }
-
-    .container .form-group input[type="submit"]:hover {
-        background-color: #45a049;
-    }
-
-    .container .form-group .error-message {
-        color: red;
-        margin-top: 5px;
-    }
-
-
-    .container .form-group .error-message {
-        color: red;
-        margin-top: 5px;
-        font-size: 14px;
-    }
-    </style>
+    <link rel="stylesheet" href="../../public/landingPage/formRegister.css">
 </head>
 
 <body>
@@ -119,6 +62,7 @@ if (input::getValue('submit_btn')) {
                 <label for="confirm-password">Confirm Password:</label>
                 <input type="password" id="confirm-password" name="confirm_password" required>
             </div>
+            <input type="hidden" name="token" value="<?=Token::generate();?>">
             <!-- <div class="form-group">
                 <label for="confirm_password">Confirm Password:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>

@@ -7,7 +7,7 @@ if (session::exist('login')) {
 }
 
 // Pengganti if(isset($_POST['btn_login]))
-if (input::getValue('submit_btn')) {
+if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))) {
     $user = new User();
     $validation = new validation();
     // validasi dulu datanya, sesuai dengan ketentuan tidak
@@ -38,7 +38,6 @@ if (input::getValue('submit_btn')) {
     } else {
         $errors = $validation->error();
     }
-
 }
 ?>
 
@@ -75,6 +74,10 @@ if (input::getValue('submit_btn')) {
                         <?php endforeach?>
                     </div>
                     <?php }?>
+                    <!-- Token for Anti-csrf -->
+                    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+
+
                     <button type="submit" class="btn-solid" name="submit_btn" value="masuk">Masuk</button>
 
                     <!--
