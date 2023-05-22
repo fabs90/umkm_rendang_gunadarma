@@ -184,6 +184,11 @@ table {
   width: 100%;
 }
 
+tr,
+td {
+  padding: 15px;
+}
+
 .main-content hr {
   margin-top: 15px;
 }
@@ -310,7 +315,7 @@ table {
 @media (max-width: 600px) {
   .main-header {
     display: block;
-    /* tata letak alternatif atau properti lain */
+    text-align: center;
   }
 
   .table {

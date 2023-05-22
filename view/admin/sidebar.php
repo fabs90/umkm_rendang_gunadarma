@@ -18,6 +18,8 @@ if (session::exist('login')) {
     session::phpAlert(session::flash('login'));
 }
 
+$db = new connection();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,29 +118,25 @@ if (session::exist('login')) {
                         <tr>
                             <td>No</td>
                             <td>Nama</td>
-                            <td>Gambar</td>
+                            <td>Deskripsi</td>
+                            <td>Bahan</td>
                             <td>Aksi</td>
                         </tr>
                     </thead>
                     <tbody>
+
+                        <?php
+$result = $db->showAllMenu();
+foreach ($result as $hasil):
+?>
                         <tr>
-                            <td>1</td>
-                            <td>Rendang A</td>
-                            <td>rendang1</td>
-                            <td>Ubah | Hapus</td>
+                            <td><?=$hasil['menu_id']?></td>
+                            <td><?=$hasil['nama']?></td>
+                            <td><?=$hasil['deskripsi']?></td>
+                            <td><?=$hasil['bahan']?></td>
+                            <td>UBAH | HAPUS</td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Rendang B</td>
-                            <td>rendang2</td>
-                            <td>Ubah | Hapus</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Rendang C</td>
-                            <td>rendang3</td>
-                            <td>Ubah | Hapus</td>
-                        </tr>
+                        <?php endforeach;?>
                     </tbody>
                 </table>
                 <!-- End of table -->
