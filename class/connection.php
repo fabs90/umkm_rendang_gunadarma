@@ -94,4 +94,11 @@ class connection
 
         return $row;
     }
+
+    public function showAllMenu()
+    {
+        $query = "SELECT * FROM all_menu ORDER BY menu_id ASC";
+        $result = $this->mysqli->query($query);
+        return $result;
+    }
 }
