@@ -7,7 +7,9 @@ Web yang kami buat merupakan bagian dari peran kepedulian Universitas Gunadarma 
 ## Authors
 
 - [@fabs90](https://www.github.com/fabs90)
+- [@hendrinuraldy](https://github.com/hendrinuraldy)
 
 ## Referensi
 
 - [OOP PHP Login & Register](https://www.youtube.com/watch?v=1c5jjFJ-fzQ&ab_channel=SekolahKoding)
+- [Remove .php with .htaccess](https://techglimpse.com/remove-php-extension-url-htaccess/)
