@@ -73,6 +73,12 @@ class connection
         return $this->mysqli->real_escape_string($name);
     }
 
+    public function lower($name)
+    {
+        $name = mb_strtolower($name);
+        return $name;
+    }
+
     public function get_info($table, $column, $value)
     {
         // Cek tipe data masukan user
@@ -95,10 +101,13 @@ class connection
         return $row;
     }
 
-    public function showAllMenu()
+    public function Performquery($query)
     {
-        $query = "SELECT * FROM all_menu ORDER BY menu_id ASC";
-        $result = $this->mysqli->query($query);
-        return $result;
+        return $this->mysqli->query($query);
+    }
+
+    public function __destruct()
+    {
+        $this->mysqli->close();
     }
 }
