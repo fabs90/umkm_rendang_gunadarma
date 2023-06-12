@@ -33,6 +33,7 @@ class session
             self::delete($nama);
             return $session;
         } else {
+            // Kalo belum ada nama session yang diminta, buat session nya
             self::set($nama, $pesan);
         }
     }
