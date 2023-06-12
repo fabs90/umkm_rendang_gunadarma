@@ -10,7 +10,7 @@ class validation
         // perlu loop 2 kali ygy
         foreach ($data as $item => $rules) {
             foreach ($rules as $rule => $rule_values) {
-                // Cek rules & validasi
+                // Cek rules & validasi`
                 switch ($rule) {
                     // Cek apakah inputan kosong
                     case 'required':
