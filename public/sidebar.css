@@ -6,6 +6,14 @@
   margin: 0;
 }
 
+td a {
+  text-decoration: none;
+}
+
+td a:visited {
+  color: blue;
+}
+
 .container {
   display: flex;
   /* biar garis screen layar sidebar penuh sampe bawahs */
