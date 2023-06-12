@@ -14,3 +14,4 @@ Web yang kami buat merupakan bagian dari peran kepedulian Universitas Gunadarma 
 - [OOP PHP Login & Register](https://www.youtube.com/watch?v=1c5jjFJ-fzQ&ab_channel=SekolahKoding)
 - [Remove .php with .htaccess](https://techglimpse.com/remove-php-extension-url-htaccess/)
 - [Responsive Table For Bootstrap 5 Framework](https://www.cssscript.com/responsive-table-bootstrap/)
+- [SB Admin 2](https://startbootstrap.com/theme/sb-admin-2)
