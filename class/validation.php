@@ -37,6 +37,12 @@ class validation
                             $this->addError("password yang diketik tidak sama, mohon ulangi");
                         }
                         break;
+                    case 'email':
+                        if (!filter_var(input::getValue($item), FILTER_VALIDATE_EMAIL)) {
+                            $this->addError("Email yang diketik tidak valid, mohon ulangi");
+
+                        }
+                        break;
                     default:
                         break;
                 }
