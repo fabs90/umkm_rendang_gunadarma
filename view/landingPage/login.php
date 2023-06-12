@@ -24,11 +24,10 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
 
             /* Kalo username ada di datbase, baru nama & password dibandingin sama data yang ada di database */
             if ($user->login_user(input::getValue('username'), input::getValue('password'))) {
-                // Memberikan pesan error utk ditampilkan kepada variabel session['login']
-                session::flash('login', 'Selamat anda berhasil login');
+
                 session::set('username', input::getValue('username'));
                 // header('Location:../admin/sidebar.php');
-                Redirect::to('../admin/sidebar');
+                Redirect::to('../admin/table');
             } else {
                 $errors[] = "Gagal login";
             }
@@ -105,6 +104,7 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
                 <div class="content">
                     <h3>SELAMAT DATANG </h3>
                     <p>Silahkan login jika ingin ke halaman admin.</p>
+                    <a href="landing.php">Kembali ke halaman utama</a>
                 </div>
                 <div class='image'></div>
             </div>
