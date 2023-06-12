@@ -8,18 +8,22 @@ if (!session::exist('username')) {
     Redirect::to('../LandingPage/login');
 
 }
+if (session::exist('store')) {
+    session::phpAlert(session::flash('store'));
+}
 
 if (session::exist('register')) {
     session::phpAlert(session::flash('register'));
 }
 
-// Menampilkan pesan yg ada pada session['login']
-if (session::exist('login')) {
-    session::phpAlert(session::flash('login'));
+if (session::exist('hapus')) {
+    session::phpAlert(session::flash('hapus'));
 }
-
+if (session::exist('gagal_hapus')) {
+    session::phpAlert(session::flash('gagal_hapus'));
+}
+$menu = new Menu();
 $db = new connection();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,8 +79,8 @@ $db = new connection();
                     </a>
                 </div>
                 <div class="list-item">
-                    <a href="#">
-                        <i class="bi bi-plus-square icon"></i>
+                    <a href="formTambah.php">
+                        <i class=" bi bi-plus-square icon"></i>
                         <span class="description-header">Tambah Menu</span>
                     </a>
                 </div>
@@ -116,27 +120,40 @@ $db = new connection();
                 <table border="1">
                     <thead>
                         <tr>
-                            <td>No</td>
-                            <td>Nama</td>
-                            <td>Deskripsi</td>
-                            <td>Bahan</td>
-                            <td>Aksi</td>
+                            <th>No</th>
+                            <th>Gambar</th>
+                            <th>Nama</th>
+                            <th class="w-75">Deskripsi</th>
+                            <th>Harga</th>
+                            <th>Bahan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         <?php
-$result = $db->showAllMenu();
+// $result = $db->showAllMenu();
+$result = $menu->index();
+$i = 1;
 foreach ($result as $hasil):
 ?>
                         <tr>
-                            <td><?=$hasil['menu_id']?></td>
+                            <td><?=$i?></td>
+                            <td>
+                                <img src="<?php echo "../../images/" . $hasil['gambar']; ?>" width="200px">
+                            </td>
                             <td><?=$hasil['nama']?></td>
                             <td><?=$hasil['deskripsi']?></td>
+                            <td><?=number_format($hasil['harga'], 2)?></td>
                             <td><?=$hasil['bahan']?></td>
-                            <td>UBAH | HAPUS</td>
+                            <td><a href="formUpdate.php?id=<?=$hasil['menu_id']?>">Ubah</a> | <a
+                                    href="deleteFunction.php?id=<?=$hasil['menu_id']?>">Hapus</a>
+                            </td>
                         </tr>
-                        <?php endforeach;?>
+                        <?php
+$i++;
+endforeach;
+?>
                     </tbody>
                 </table>
                 <!-- End of table -->
