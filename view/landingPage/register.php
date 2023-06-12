@@ -31,7 +31,7 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
 
             session::flash('register', 'Selamat anda berhasil mendaftar');
             session::set('username', input::getValue('username'));
-            Redirect::to('../admin/sidebar');
+            Redirect::to('../admin/table');
         } else {
             $errors = $validation->error();
         }
