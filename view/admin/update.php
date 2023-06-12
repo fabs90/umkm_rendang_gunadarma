@@ -71,7 +71,7 @@ body {
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="card mx-auto">
+                    <div class="card shadow mx-auto">
                         <div class="card-body p-4">
                             <h1 class="card-text text-center fw-bold p-4">Update Menu</h1>
                             <h6 class="card-subtitle mb-2 text-muted text-center">

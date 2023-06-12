@@ -362,7 +362,7 @@ $db = new connection();
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-mobile-responsive table-mobile-sided" id="example">
+                                <table class="table table-mobile-responsive table-mobile-sided" id="myTable">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
@@ -452,6 +452,8 @@ endforeach;
             </div>
         </div>
     </div>
+
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
