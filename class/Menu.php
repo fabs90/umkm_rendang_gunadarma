@@ -14,6 +14,14 @@ class Menu
         $db = new connection();
         $query = "SELECT * FROM all_menu ORDER BY menu_id ASC";
         $result = $db->performQuery($query);
+        return $result;
+    }
+
+    public function show($id)
+    {
+        $db = new connection();
+        $query = "SELECT * FROM all_menu WHERE menu_id = $id ORDER BY menu_id ASC";
+        $result = $db->performQuery($query);
 
         return $result;
     }
@@ -41,13 +49,14 @@ class Menu
             }
 
             // Cek apakah inputan tipe integer atau bukan
-            if (is_int($value)) {
+            if (is_numeric($value)) {
                 // Kalau integer, tidak perlu beri tanda petik
                 $valuesArray[$i] = $escapedValue;
-            }
-            // Kalau string kasih petik
-            $valuesArray[$i] = "'" . $escapedValue . "'";
+            } else {
+                // Kalau string kasih petik
+                $valuesArray[$i] = "'" . $escapedValue . "'";
 
+            }
             $i++;
         }
 
@@ -91,7 +100,7 @@ class Menu
     public function edit($id)
     {
         $db = new connection();
-        $query = "SELECT * FROM all_menu WHERE menu_id = '$id'";
+        $query = "SELECT * FROM all_menu WHERE menu_id = $id";
         $result = $db->performQuery($query);
         return $result;
     }
@@ -119,12 +128,14 @@ class Menu
             }
 
             // Cek apakah inputan tipe integer atau bukan
-            if (is_int($value)) {
+            if (is_numeric($value)) {
                 // Kalau integer, tidak perlu beri tanda petik
                 $valuesArray[$i] = $escapedValue;
+            } else {
+                // Kalau string kasih petik
+                $valuesArray[$i] = "'" . $escapedValue . "'";
+
             }
-            // Kalau string kasih petik
-            $valuesArray[$i] = "'" . $escapedValue . "'";
 
             $i++;
         }
@@ -133,6 +144,7 @@ class Menu
         $deskripsi_produk = $valuesArray[1];
         $harga_produk = $valuesArray[2];
         $bahan_produk = $valuesArray[3];
+        $diskon_produk = $valuesArray[5];
 
         // Buat array yg extensi nya diperbolehkan
         $ekstensi_diperbolehkan = ['png', 'jpg', 'jpeg'];
@@ -148,58 +160,72 @@ class Menu
         // Gabungkan nilai dalam format (value1, value2, value3)
         $values = implode(', ', $valuesArray);
 
+        // Jika diskon yang diinput > 0
+        if ($diskon_produk != 0) {
+            $harga_diskon = $this->hitungDiskon($harga_produk, $diskon_produk);
+
+            // Kalau yang diinput kosong / 0
+        } else {
+            $harga_diskon = 0;
+        }
+
         // Buat query update nama, deskripsi, bahan, harga
-        $query = "UPDATE all_menu SET nama = $nama_produk, deskripsi = $deskripsi_produk, harga = $harga_produk, bahan = $bahan_produk WHERE menu_id = $id";
+        $query = "UPDATE all_menu SET nama = $nama_produk, deskripsi = $deskripsi_produk, harga = $harga_produk, harga_diskon = $harga_diskon, bahan = $bahan_produk WHERE menu_id = $id";
 
         if ($db->Performquery($query)) {
-            session::flash('store', 'Data berhasil diupdate');
+            //  Cek apakah user input gambar
+            if ($_FILES['gambar']['name'] != null) {
+                // Update gambar saja
+                if (in_array($ekstensi, $ekstensi_diperbolehkan)) {
+                    // Kalau ukuran dibawah 4mb
+                    if ($ukuran < 2000 * 2000) {
 
-            // Update gambar saja
-            if (in_array($ekstensi, $ekstensi_diperbolehkan)) {
-                if ($ukuran < 2000 * 2000) {
+                        // Pindahkan soft copy gambar baru yang diupload ke direktori tujuan
+                        $tujuan = 'c:/xampp/htdocs/Project/admin_interface_umkm/images/' . $nama_gambar;
+                        move_uploaded_file($file_tmp, $tujuan);
 
-                    // Pindahkan soft copy gambar baru yang diupload ke direktori tujuan
-                    $tujuan = 'c:/xampp/htdocs/Project/admin_interface_umkm/images/' . $nama_gambar;
-                    move_uploaded_file($file_tmp, $tujuan);
+                        // Query gambar lama
+                        $queryGambar = "SELECT gambar FROM all_menu where menu_id = '$id'";
+                        if ($result1 = $db->performQuery($queryGambar)) {
 
-                    // Query gambar lama
-                    $queryGambar = "SELECT gambar FROM all_menu where menu_id = '$id'";
-                    if ($result1 = $db->performQuery($queryGambar)) {
+                            $row1 = $result1->fetch_assoc();
 
-                        $row1 = $result1->fetch_assoc();
+                            // Ambil data gambar lama dr database
+                            $image = $row1['gambar'];
 
-                        // Ambil data gambar lama dr database
-                        $image = $row1['gambar'];
+                            // Hapus soft copy gambar lama
+                            $dir = 'c:/xampp/htdocs/Project/admin_interface_umkm/images/' . $image;
+                            unlink($dir);
+                        } else {
+                            session::flash('store', 'Data gagal diproses');
+                            return false;
+                        }
 
-                        // Hapus soft copy gambar lama
-                        $dir = 'c:/xampp/htdocs/Project/admin_interface_umkm/images/' . $image;
-                        unlink($dir);
+                        // Update nama gambar baru di database
+                        $queryUpdateGambar = "UPDATE all_menu SET gambar = '$nama_gambar' WHERE menu_id = '$id'";
+                        if ($db->Performquery($queryUpdateGambar)) {
+                            session::flash('store', 'Data berhasil diupdate');
+                            Redirect::to('table');
+                            return true;
+                        }
+                        return false;
+
                     } else {
-                        session::flash('store', 'Data gagal diproses');
-                        Redirect::to('table');
+                        session::flash('error_size', 'Ukuran terlalu besar, maksimum 4mb');
                         return false;
                     }
 
-                    // Update nama gambar baru di database
-                    $queryUpdateGambar = "UPDATE all_menu SET gambar = '$nama_gambar' WHERE menu_id = '$id'";
-                    if ($db->Performquery($queryUpdateGambar)) {
-                        session::flash('store', 'Data berhasil diupdate');
-                        Redirect::to('table');
-                        return true;
-                    }
+                } else {
+                    session::flash('error_ekstensi', 'Hanya bisa PNG, JPG, JPEG');
                     return false;
-
                 }
-                session::flash('error_size', 'Ukuran terlalu besar, maksimum 4mb');
-                Redirect::to('table');
-                return false;
             }
-            session::flash('error_ekstensi', 'Hanya boleh PNG,JPG,JPEG');
-            Redirect::to('table');
-            return false;
+            session::flash('store', 'Data berhasil diupdate');
+            return true;
+
 
         } else {
-            Redirect::to('table');
+            Redirect::to('update');
             return false;
         }
 
@@ -239,4 +265,10 @@ class Menu
         return false;
     }
 
+    public function hitungDiskon($harga, $diskon)
+    {
+        $nilaiDiskon = $harga * ($diskon / 100);
+        $hargaSetelahDiskon = $harga - $nilaiDiskon;
+        return intval($hargaSetelahDiskon);
+    }
 }
