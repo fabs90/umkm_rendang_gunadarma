@@ -92,13 +92,12 @@ $db = new connection();
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Others</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">Tools:</h6>
+                        <a class="collapse-item" href="tambah.php">Tambah Menu</a>
                     </div>
                 </div>
             </li>
@@ -314,7 +313,8 @@ $db = new connection();
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Nama orang</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <?=$_SESSION['username']?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -350,10 +350,10 @@ $db = new connection();
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800">List Menu</h1>
+                    <p class="mb-4">Semua harga ditentukan dengan ketentuan Rendang (per-250gr / 4 Potong) dan Sosis
+                        Solo (per-3
+                        potong).</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -370,6 +370,7 @@ $db = new connection();
                                             <th scope="col">Nama</th>
                                             <th scope="col">Deskripsi</th>
                                             <th scope="col">Harga</th>
+                                            <th scope="col">Harga Diskon</th>
                                             <th scope="col">Bahan</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
@@ -390,6 +391,8 @@ foreach ($result as $hasil):
                                             <td data-content="Nama"><?=$hasil['nama']?></td>
                                             <td data-content="Deskripsi"><?=$hasil['deskripsi']?></td>
                                             <td data-content="Harga"><?=number_format($hasil['harga'], 2)?></td>
+                                            <td data-content="Harga Diskon">
+                                                <?=number_format($hasil['harga_diskon'], 2)?></td>
                                             <td data-content="Bahan"><?=$hasil['bahan']?></td>
                                             <td data-content="Aksi"><a
                                                     href="update.php?id=<?=$hasil['menu_id']?>">Ubah</a> | <a
@@ -452,7 +455,6 @@ endforeach;
             </div>
         </div>
     </div>
-
 
 
     <!-- Bootstrap core JavaScript-->
