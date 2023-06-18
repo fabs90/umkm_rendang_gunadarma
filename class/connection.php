@@ -106,6 +106,16 @@ class connection
         return $this->mysqli->query($query);
     }
 
+    public function getTable()
+    {
+        return $this->database;
+    }
+
+    public function message($content, $status)
+    {
+        return json_encode(['message' => $content, 'error' => $status]);
+    }
+
     public function __destruct()
     {
         $this->mysqli->close();
