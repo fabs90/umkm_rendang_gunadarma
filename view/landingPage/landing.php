@@ -23,16 +23,17 @@
     <!-- header section start here  -->
     <header class="header">
         <div class="logoContent">
-            <a href="#" class="logo"><img src="logo-UKB.png" alt=""></a>
+            <a href="#" class="logo"><img src="../../assets/logo-UKB.png" alt=""></a>
             <h1 class="logoName">Aneka jajanan daerah </h1>
         </div>
 
         <nav class="navbar" id="navbar">
             <a href="#home">home</a>
             <a href="#product">product</a>
-            <a href="#blogs">blogs</a>
+            <a href="https://kjkmu.000webhostapp.com/menu.html">Menu</a>
             <a href="#review">review</a>
             <a href="#contact">contact</a>
+            <a href="login.php">Login</a>
         </nav>
 
         <div class="icon">
@@ -50,7 +51,7 @@
 
     <!-- home section start here  -->
     <div class="discount-box">
-        <img src="poto3.jpg" class="icon-discount">
+        <a href="https://wa.me/6285280378914"><img src="../../assets/promoedit.jpg" class="icon-discount"></a>
     </div>
     <section class="home" id="home">
 
@@ -58,26 +59,32 @@
             <br>
             <br>
             <br>
-            <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_hbdelex6.json" background="transparent"
-                speed="1" class="img-fluid w-100 px-lg-5" style="width: 250px; height: 150px; " loop autoplay>
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_bevi1628.json" background="transparent"
+                speed="0.5" class="img-fluid w-100 px-lg-5" style="width: 400px; height: 150px; " loop autoplay>
             </lottie-player>
-            <h3>Selamat Datang<span></span></h3>
-            <h3>Pelanggan<span></span></h3>
-            <h3>diWeb Kami<span></span></h3>
 
-            <p>Rendang memiliki filosofi tersendiri bagi masyarakat Minang Sumatra Barat, yaitu musyawarah dan mufakat,
+            <h3>Salam Hangat<span></span></h3>
+            <h3>Pecinta Rendang<span></span></h3>
+            <h3>Sapi Umar<span></span></h3>
+
+            <p> Rendang memiliki filosofi tersendiri bagi masyarakat Minang Sumatra Barat, yaitu musyawarah dan mufakat,
                 yang berangkat dari empat bahan pokok yang melambangkan keutuhan masyarakat Minang. Sesuai dengan
                 namanya, jajanan yang satu ini memang berasal dari kota Solo di Jawa Tengah. Namun, berbeda dengan sosis
                 biasanya, karena secara teknis, sosis Solo bukanlah benar-benar sosis.</p>
             <a href="https://kjkmu.000webhostapp.com/filosofi.html" class="btn">Baca Filosofi</a>
         </div>
-
+        <img src="../../assets/Brown & White Modern Food Promotion Poster (1).png" class="jametkudasai"
+            style="margin:auto; margin-right:20px; width:35%;">
     </section>
+
+
 
 
     <!-- home section end here  -->
 
     <!-- product section start here  -->
+    <br>
+
     <section class="product" id="product">
         <div class="heading">
             <h2>Produk Eksklusif Kita</h2>
@@ -86,46 +93,51 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="umkm4.jpeg" alt="">
+                        <img src="../../assets/umkm4.jpeg" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Rendang </h3>
-                        <p>Homemade, dibuat dari rempah pilihan dan berkualitas.
-                        </p>
-                        <div class="price">Rp.30.000 <span>Rp.35.000</span></div>
+                        <p>siap santap
+                            Dipacking dgn berat 250 gr dgn isi 4 potong dengan cita rasa Minang yang khas. </p>
+                        <div class="price">Rp.75.000 <span>Rp.85.000</span></div>
                     </div>
                 </div>
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="umkm3.jpeg" style="width: 65%;">
+                        <img src="../../assets/umkm3.jpeg" style="width: 65%;">
                     </div>
                     <div class="product-content">
-                        <h3>Risol Solo</h3>
-                        <p>Dibuat dengan rempah dan bahan yang berkualitas dijamin enak.
+                        <h3>Sosis Solo</h3>
+                        <p>siap frozen.
+                            Dipacking per-3 potong dgn harga 15.000.
+                            Kulit sosis solo yg lembut dan ayam sensasi yg lembut.
                         </p>
-                        <div class="price">Rp.30.000 <span>Rp.35.000</span></div>
+                        <div class="price">Rp.15.000 <span>Rp.25.000</span></div>
                     </div>
                 </div>
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="umkm5.jpeg" style="width: 65%;">
+                        <img src="../../assets/umkm5.jpeg" style="width: 65%;">
                     </div>
                     <div class="product-content">
-                        <h3>Rosil Solo</h3>
-                        <p>Dibuat dengan rempah dan bahan yang berkualitas dijamin enak.
+                        <h3>Sosis Solo</h3>
+                        <p>siap santap.
+                            Dipacking per-3 potong dgn harga 15.000.
+                            Kulit sosis solo yg lembut dan ayam sensasi yg lembut.
                         </p>
-                        <div class="price">Rp.30.000 <span>Rp.35.000</span></div>
+                        <div class="price">Rp.15.000 <span>Rp.25.000</span></div>
                     </div>
                 </div>
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="umkm4.jpeg" alt="">
+                        <img src="../../assets/umkm4.jpeg" alt="">
                     </div>
                     <div class="product-content">
                         <h3>Rendang</h3>
-                        <p>Homemade, dibuat dari rempah pilihan dan berkualitas.
+                        <p>siap frozen.
+                            Dipacking dgn berat 250 gr dgn isi 4 potong dengan cita rasa Minang yang khas
                         </p>
-                        <div class="price">Rp.30.000 <span>Rp.35.000</span></div>
+                        <div class="price">Rp.75.000 <span>Rp.85.000</span></div>
                     </div>
                 </div>
 
@@ -135,6 +147,26 @@
 
         <div class="swiper-pagination"></div>
         </div>
+    </section>
+
+    <section class="contact" id="contact">
+
+        <h1 class="heading"> <span>contact</span> Kita </h1>
+
+        <div class="row">
+
+            <form action="">
+                <h3>Klik Icon WA untuk memesan</h3>
+                <br>
+                <br>
+                <a href="https://wa.me/6285280378914"><i class="fa fa-whatsapp "
+                        style="font-size:50px;color:green"></i></a>
+
+
+            </form>
+
+        </div>
+
     </section>
 
     <!-- product section end here  -->
@@ -150,30 +182,26 @@
             <div class="swiper-wrapper">
                 <div class=" swiper-slide box">
                     <div class="img">
-                        <img src="umkm5.jpeg" style="border-radius: 20px;">
+                        <img src="../../assets/umkm5.jpeg" style="border-radius: 20px;">
                     </div>
                     <div class="content">
                         <h3>Sosis Solo</h3>
-                        <p>Prochiz Lovers, pernah dengar sosis Solo? Sesuai dengan namanya, jajanan yang satu ini memang
-                            berasal dari kota Solo di Jawa Tengah. Namun, berbeda dengan sosis biasanya, karena secara
-                            teknis, sosis Solo bukanlah benar-benar sosis. Sosis solo terbuat dari daging sapi atau ayam
-                            yang telah digiling,
-                            kemudian dibungkus dengan dadar yang dibalur dengan telur.</p>
+                        <p>siap santap.
+                            Dipacking per-3 potong dgn harga 15.000.
+                            Kulit sosis solo yg lembut dan ayam sensasi yg lembut.</p>
                         <p></p>
                         <a href="https://wa.me/628128494313" class="btn">Silahkan Pesan</a>
                     </div>
                 </div>
                 <div class=" swiper-slide box">
                     <div class="img">
-                        <img src="umkm3.jpeg" style="border-radius: 20px;">
+                        <img src="../../assets/umkm3.jpeg" style="border-radius: 20px;">
                     </div>
                     <div class="content">
                         <h3>Sosis solo </h3>
-                        <p>Prochiz Lovers, pernah dengar sosis Solo? Sesuai dengan namanya, jajanan yang satu ini memang
-                            berasal dari kota Solo di Jawa Tengah. Namun, berbeda dengan sosis biasanya, karena secara
-                            teknis, sosis Solo bukanlah benar-benar sosis. Sosis solo terbuat dari daging sapi atau ayam
-                            yang telah digiling,
-                            kemudian dibungkus dengan dadar yang dibalur dengan telur.</p>
+                        <p>siap santap.
+                            Dipacking per-3 potong dgn harga 15.000.
+                            Kulit sosis solo yg lembut dan ayam sensasi yg lembut.</p>
                         <p>
                         </p>
                         <a href="https://wa.me/628128494313" class="btn">Silahkan Pesan</a>
@@ -181,15 +209,13 @@
                 </div>
                 <div class=" swiper-slide box">
                     <div class="img">
-                        <img src="umkm2.jpeg" style="border-radius: 20px;">
+                        <img src="../../assets/umkm2.jpeg" style="border-radius: 20px;">
                     </div>
                     <div class="content">
                         <h3>Rendang</h3>
-                        <p>hidangan berbahan dasar daging yang dihasilkan dari proses memasak suhu rendah dalam waktu
-                            lama dengan menggunakan aneka rempah-rempah dan santan. Proses memasaknya memakan waktu
-                            berjam-jam (biasanya sekitar empat jam) hingga yang tinggal hanyalah potongan daging
-                            berwarna hitam pekat dan dedak. Dalam suhu ruangan,
-                            rendang dapat bertahan hingga berminggu-minggu.</p>
+                        <p>siap santap dan frozen.
+                            Dipacking dgn berat 250 gr dgn isi 4 potong dgn bumbu khas asli rendang minang.
+                            Tahan 7 hari</p>
                         <a href="https://wa.me/628128494313" class="btn">Silahkan Pesan</a>
 
                     </div>
@@ -201,23 +227,15 @@
 
     <section class="contact" id="contact">
 
-        <h1 class="heading"> <span>contact</span> Kita </h1>
+        <h1 class="heading"> <span>Maps</span> Kita </h1>
 
         <div class="row">
 
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.002009932312!2d106.80981009999999!3d-6.3937409999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e94f42cdabf7%3A0xc04442f498afaaed!2sNajiha!5e0!3m2!1sid!2sid!4v1684995169699!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.2408356244987!2d106.87099087372236!3d-6.362868962242618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ec8c2d341441%3A0x2f68eaf902929bbd!2sPerumahan%20Lembah%20Nirmala%202!5e0!3m2!1sid!2sid!4v1688953145628!5m2!1sid!2sid"
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-            <form action="">
-                <h3>Jika ingin memesan, silahkan tekan tombol dibawah ini</h3>
-                <br>
-                <br>
-
-                <a href="https://wa.me/628128494313" type="submit" value="contact now" class="jamet">Contact Now</a>
-
-            </form>
 
         </div>
 
@@ -227,7 +245,7 @@
     <!-- review section start here  -->
     <section class="review" id="review">
         <div class="heading">
-            <h2>reviw pelanggan</h2>
+            <h2>review pelanggan</h2>
         </div>
 
 
@@ -235,15 +253,15 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
                     <div class="client-review">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
-                            quasi eveniet aliquam sed?</p>
+                        <p>saya sangat suka dengan rendangnya karena memiliki ciri khas padang sekali dan aromanya
+                            mengugah selera.</p>
                     </div>
                     <div class="client-info">
                         <div class="img">
-                            <img src="poto4.jpg" alt="">
+                            <img src="../../assets/fabian.jpg" alt="">
                         </div>
                         <div class="clientDetailed">
-                            <h3>Hardy Devid</h3>
+                            <h3>Fabian</h3>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -256,15 +274,15 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="client-review">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
-                            quasi eveniet aliquam sed?</p>
+                        <p>Makanan ini sangat enak, dan cocok untuk lidah dari berbagai penjuru yang ada di
+                            Indonesia.dan saya juga suka pada sosis solo yang khas</p>
                     </div>
                     <div class="client-info">
                         <div class="img">
-                            <img src="poto4.jpg" alt="">
+                            <img src="../../assets/afrel.jpeg" alt="">
                         </div>
                         <div class="clientDetailed">
-                            <h3>Hardy Devid</h3>
+                            <h3>Afrel</h3>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -277,15 +295,15 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="client-review">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
-                            quasi eveniet aliquam sed?</p>
+                        <p>Rendang dan Sosis solo buatan umkm ini sangat enak menurut saya. Saya akan stok setiap
+                            bulannya dan membeli di umkm ini</p>
                     </div>
                     <div class="client-info">
                         <div class="img">
-                            <img src="poto4.jpg" alt="">
+                            <img src="../../assets/raldy.jpeg" alt="">
                         </div>
                         <div class="clientDetailed">
-                            <h3>Hardy Devid</h3>
+                            <h3>Raldy</h3>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -298,15 +316,15 @@
                 </div>
                 <div class="swiper-slide box">
                     <div class="client-review">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, perferendis architecto
-                            quasi eveniet aliquam sed?</p>
+                        <p>saya sangat suka dengan rendangnya karena memiliki ciri khas padang sekali dan aromanya
+                            mengugah selera.</p>
                     </div>
                     <div class="client-info">
                         <div class="img">
-                            <img src="poto4.jpg" alt="">
+                            <img src="../../assets/dede.png" alt="">
                         </div>
                         <div class="clientDetailed">
-                            <h3>Hardy Devid</h3>
+                            <h3>Dhede Anggi</h3>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -359,6 +377,9 @@
                 <a href="#"> <i class="fas fa-phone"></i>0812-8494-313</a>
                 <a href="#"> <i class="fas fa-envelope"></i>Omudinarlia@gmail.com</a>
                 <a href="#"> <i class="fa fa-credit-card-alt"> bank bca</i></a>
+                <p>SCAN QODE NOMOR WA</p>
+                <br>
+                <img src="qodeqr.png" style="width: 120px;">
 
             </div>
 
@@ -388,7 +409,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- custom js file  -->
-    <script src="umkmRendang.js"></script>
+    <script src="../../public/landingPage/umkmRendang.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 </body>
