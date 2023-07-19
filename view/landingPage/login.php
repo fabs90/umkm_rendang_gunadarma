@@ -2,10 +2,6 @@
 require_once "c:/xampp/htdocs/Project/admin_interface_umkm/core/init.php";
 $db = new connection();
 
-if (session::exist('login')) {
-    session::phpAlert(session::flash('login'));
-}
-
 // Pengganti if(isset($_POST['btn_login]))
 if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))) {
     $user = new User();
@@ -16,7 +12,7 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
         'password' => ['required' => true],
     ]);
 
-    // Kalo sesuai langsung register data tersebut ke DB
+    // Kalo sesuai langsung cek data tersebut ke DB
     if ($validation->passed()) {
 
         // Cek nama dari database dulu, kalo ada datanya
@@ -32,7 +28,7 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
                 $errors[] = "Gagal login";
             }
         }
-        $errors[] = "Username/Password tidak valid";
+        $errors[] = "Cek ulang username dan password";
 
     } else {
         $errors = $validation->error();
@@ -48,6 +44,8 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../public/landingPage/formLogin.css" />
+    <link rel="stylesheet" href="../../public/sweetalert/sweetalert2.min.css">
+
     <title>Sign in Form</title>
 </head>
 
@@ -65,16 +63,16 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
                         <i class="fas fa-lock"></i>
                         <input type="password" placeholder="Password" name="password" required />
                     </div>
-                    <?php if (!empty($errors)) {?>
+                    <?php if (!empty($errors)): ?>
                     <div class="errors">
                         <p>Terdapat Error :</p>
                         <?php foreach ($errors as $error): ?>
                         <h5 class="error-message" style="color:red;"><?=$error?></h5>
                         <?php endforeach?>
                     </div>
-                    <?php }?>
+                    <?php endif?>
                     <!-- Token for Anti-csrf -->
-                    <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+                    <input type="hidden" name="token" value="<?=Token::generate();?>">
 
 
                     <button type="submit" class="btn-solid" name="submit_btn" value="masuk">Masuk</button>
@@ -111,5 +109,20 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
 
 </body>
 <script src="../../public/landingPage/formLogin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../../public/sweetalert/sweetalert2.min.js"></script>
 
 </html>
+<!-- Cek apakah ada session dgn nama login_dulu -->
+<?php if (session::exist('login_dulu')): ?>
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Silakan login lebih dahulu😊',
+})
+</script>
+<?php
+// sesudah jalankan sweetalert, hapus session
+session::delete('login_dulu');
+endif?>

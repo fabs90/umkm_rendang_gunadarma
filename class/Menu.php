@@ -44,17 +44,23 @@ class Menu
 
             // Cek jika key adalah gambar dan value adalah gambar
             if ($key == "gambar") {
+                //  Ambil nama gambar
                 $nama_gambar = $_FILES['gambar']['name'];
-                $valuesArray[$i] = $nama_gambar;
+                // Get file extension
+                $ext = pathinfo($nama_gambar, PATHINFO_EXTENSION);
+                $uniqueId = uniqid();
+                // Combine unique id, file extension, and original file name
+                $newFileName = $uniqueId . $nama_gambar;
+                $valuesArray[$key] = $newFileName;
             }
 
             // Cek apakah inputan tipe integer atau bukan
             if (is_numeric($value)) {
                 // Kalau integer, tidak perlu beri tanda petik
-                $valuesArray[$i] = $escapedValue;
+                $valuesArray[$key] = $escapedValue;
             } else {
                 // Kalau string kasih petik
-                $valuesArray[$i] = "'" . $escapedValue . "'";
+                $valuesArray[$key] = "'" . $escapedValue . "'";
 
             }
             $i++;
@@ -63,7 +69,7 @@ class Menu
         // Buat array yg extensi nya diperbolehkan
         $ekstensi_diperbolehkan = ['png', 'jpg', 'jpeg'];
         // Cek ekstensi dgn cara explode
-        $x = explode('.', $nama_gambar);
+        $x = explode('.', $newFileName);
         // kecilin semuaa huruf sesudah '.(titik), dan ambil extensi nya'
         $ekstensi = strtolower(end($x));
         // Ambil size file yg di upload
@@ -74,8 +80,11 @@ class Menu
         if (in_array($ekstensi, $ekstensi_diperbolehkan)) {
             if ($ukuran < 2000 * 2000) {
                 // Pindahkan file yang diupload ke direktori tujuan
-                $tujuan = 'c:/xampp/htdocs/Project/admin_interface_umkm/images/' . $nama_gambar;
+                $tujuan = 'c:/xampp/htdocs/Project/admin_interface_umkm/images/' . $newFileName;
                 move_uploaded_file($file_tmp, $tujuan);
+
+                // Update nama gambar dengan $newFileName yang berisi nama file yang unik
+                $valuesArray['gambar'] = '"' . $newFileName . '"';
 
                 // Gabungkan nilai dalam format (value1, value2, value3)
                 $values = implode(', ', $valuesArray);
@@ -223,7 +232,6 @@ class Menu
             session::flash('store', 'Data berhasil diupdate');
             return true;
 
-
         } else {
             Redirect::to('update');
             return false;
@@ -247,7 +255,7 @@ class Menu
         // Lakukan query hapus data dari database
         $query2 = "DELETE FROM all_menu WHERE menu_id = $id";
         if ($db->Performquery($query2) && $hapus) {
-            session::flash('hapus', 'Data berhasil terhapus!');
+            session::set('hapus', 'Data berhasil terhapus!');
             Redirect::to('table');
             return true;
         }

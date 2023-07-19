@@ -1,3 +1,8 @@
+<?php
+require_once "c:/xampp/htdocs/Project/admin_interface_umkm/core/init.php";
+
+$menu = new Menu();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,12 +38,11 @@
             <a href="https://kjkmu.000webhostapp.com/menu.html">Menu</a>
             <a href="#review">review</a>
             <a href="#contact">contact</a>
-            <a href="login.php">Login</a>
         </nav>
 
         <div class="icon">
             <i class="fas fa-search" id="search"></i>
-            <i class="fas fa-bars" id="menu-bar"></i>
+            <i class="fas fa-bars" id="menu-bar"></a></i>
             <i class="fa fa-bank" id="bank"></i>
         </div>
 
@@ -87,59 +91,37 @@
 
     <section class="product" id="product">
         <div class="heading">
-            <h2>Produk Eksklusif Kita</h2>
+            <h2>Produk Eksklusif Kami</h2>
         </div>
         <div class="swiper product-row">
             <div class="swiper-wrapper">
+                <?php
+$result = $menu->index();
+foreach ($result as $hasil):
+?>
+
                 <div class="swiper-slide box">
                     <div class="img">
-                        <img src="../../assets/umkm4.jpeg" alt="">
+                        <img src="<?="../../images/" . $hasil['gambar'];?>" alt="">
                     </div>
                     <div class="product-content">
-                        <h3>Rendang </h3>
+                        <h3><?=$hasil['nama']?></h3>
                         <p>siap santap
                             Dipacking dgn berat 250 gr dgn isi 4 potong dengan cita rasa Minang yang khas. </p>
-                        <div class="price">Rp.75.000 <span>Rp.85.000</span></div>
+                        <?php if ($hasil['harga_diskon'] > 0) {?>
+                        <div class="price"><?=number_format($hasil['harga_diskon'], 0)?>
+                            <span><?=number_format($hasil['harga'], 0)?></span>
+                        </div>
+                        <?php } else {?>
+                        <div class="price"><?=number_format($hasil['harga'], 0)?> </div>
+
+                        <?php }?>
                     </div>
                 </div>
-                <div class="swiper-slide box">
-                    <div class="img">
-                        <img src="../../assets/umkm3.jpeg" style="width: 65%;">
-                    </div>
-                    <div class="product-content">
-                        <h3>Sosis Solo</h3>
-                        <p>siap frozen.
-                            Dipacking per-3 potong dgn harga 15.000.
-                            Kulit sosis solo yg lembut dan ayam sensasi yg lembut.
-                        </p>
-                        <div class="price">Rp.15.000 <span>Rp.25.000</span></div>
-                    </div>
-                </div>
-                <div class="swiper-slide box">
-                    <div class="img">
-                        <img src="../../assets/umkm5.jpeg" style="width: 65%;">
-                    </div>
-                    <div class="product-content">
-                        <h3>Sosis Solo</h3>
-                        <p>siap santap.
-                            Dipacking per-3 potong dgn harga 15.000.
-                            Kulit sosis solo yg lembut dan ayam sensasi yg lembut.
-                        </p>
-                        <div class="price">Rp.15.000 <span>Rp.25.000</span></div>
-                    </div>
-                </div>
-                <div class="swiper-slide box">
-                    <div class="img">
-                        <img src="../../assets/umkm4.jpeg" alt="">
-                    </div>
-                    <div class="product-content">
-                        <h3>Rendang</h3>
-                        <p>siap frozen.
-                            Dipacking dgn berat 250 gr dgn isi 4 potong dengan cita rasa Minang yang khas
-                        </p>
-                        <div class="price">Rp.75.000 <span>Rp.85.000</span></div>
-                    </div>
-                </div>
+
+                <?php
+endforeach;
+?>
 
             </div>
             <div class="swiper-pagination"></div>
@@ -151,18 +133,19 @@
 
     <section class="contact" id="contact">
 
-        <h1 class="heading"> <span>contact</span> Kita </h1>
+        <h1 class="heading"> <span>kontak</span> Kami </h1>
 
         <div class="row">
 
             <form action="">
-                <h3>Klik Icon WA untuk memesan</h3>
+                <h3>Untuk info promo dan pemesanan, klik <a href="https://wa.me/6285280378914"><i
+                            class="fa fa-whatsapp " style="font-size:50px;color:green"></i></a></h3>
                 <br>
                 <br>
-                <a href="https://wa.me/6285280378914"><i class="fa fa-whatsapp "
-                        style="font-size:50px;color:green"></i></a>
 
+                <h3>(0812-1234-5678)</h3>
 
+                <br>
             </form>
 
         </div>
@@ -176,7 +159,7 @@
     <div class="swiper-pagination"></div>
     <section class="blogs" id="blogs">
         <div class="aha">
-            <h2>Produk Kita</h2>
+            <h2>Produk Kami</h2>
         </div>
         <div class=" swiper blogs-row">
             <div class="swiper-wrapper">
@@ -227,7 +210,7 @@
 
     <section class="contact" id="contact">
 
-        <h1 class="heading"> <span>Maps</span> Kita </h1>
+        <h1 class="heading"> <span>Maps</span> Kami </h1>
 
         <div class="row">
 
@@ -245,7 +228,7 @@
     <!-- review section start here  -->
     <section class="review" id="review">
         <div class="heading">
-            <h2>review pelanggan</h2>
+            <h2>Testimoni</h2>
         </div>
 
 
@@ -346,15 +329,7 @@
 
     <footer class="footer" id="contact">
         <div class="box-container">
-            <div class="mainBox">
-                <div class="content">
-                    <a href="#"><img src="" alt=""></a>
-                    <h1 class="logoName"> aneka makanan </h1>
-                </div>
-
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta accusamus maxime quod.</p>
-
-            </div>
+            <div class="box"></div>
             <div class="box">
                 <h3>Quick link</h3>
                 <a href="#"> <i class="fas fa-arrow-right"></i>Home</a>
@@ -366,11 +341,11 @@
             </div>
             <div class="box">
                 <h3>Extra link</h3>
-                <a href="https://najihafoodndrink.my.id/"> <i class="fas fa-arrow-right"></i>Info akun</a>
+                <a href="login.php"> <i class="fas fa-arrow-right"></i>Admin</a>
                 <a href="#"> <i class="fas fa-arrow-right"></i>order</a>
                 <a href="#"> <i class="fas fa-arrow-right"></i>privasi</a>
                 <a href="#"> <i class="fas fa-arrow-right"></i>metode pembayaran</a>
-                <a href="#"> <i class="fas fa-arrow-right"></i>servis kita</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>servis Kami</a>
             </div>
             <div class="box">
                 <h3>Contact Info</h3>

@@ -4,7 +4,7 @@ require_once "c:/xampp/htdocs/Project/admin_interface_umkm/core/init.php";
 // Cek, kalau variabel session username blom di set maka balik ke form login
 if (!session::exist('username')) {
     // Sebelum redirect kasih flash message
-    session::flash('login', 'Anda harus login!');
+    session::flash('login_dulu', 'Anda harus login!');
     Redirect::to('../LandingPage/login');
 
 }
@@ -37,7 +37,7 @@ $db = new connection();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin New 2.0</title>
+    <title>Admin</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -54,9 +54,18 @@ $db = new connection();
     <!-- Bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- sweetalert -->
+    <link rel="stylesheet" href="../../public/sweetalert/sweetalert2.min.css">
+
     <!-- Personal styles -->
     <link rel="stylesheet" href="../../public/table.css">
     <link rel="stylesheet" href="../../public/Responsive-Table.css">
+
+    <style>
+    .swal2-popup {
+        font-size: 1rem !important;
+    }
+    </style>
 </lhead>
 
 <body id="page-top">
@@ -75,12 +84,7 @@ $db = new connection();
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="table.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -208,12 +212,12 @@ $db = new connection();
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
 
-                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div> -->
                                 <a class="dropdown-item" href="logout.php" data-toggle="modal"
                                     data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -266,8 +270,7 @@ foreach ($result as $hasil):
                                         <tr>
                                             <td scope="row" data-content="No"><?=$i?></td>
                                             <td data-content="Gambar">
-                                                <img src="<?php echo "../../images/" . $hasil['gambar']; ?>"
-                                                    class="img-fluid">
+                                                <img src="<?="../../images/" . $hasil['gambar'];?>" class="img-fluid">
                                             </td>
                                             <td data-content="Nama"><?=$hasil['nama']?></td>
                                             <td data-content="Deskripsi"><?=$hasil['deskripsi']?></td>
@@ -277,7 +280,8 @@ foreach ($result as $hasil):
                                             <td data-content="Bahan"><?=$hasil['bahan']?></td>
                                             <td data-content="Aksi"><a
                                                     href="update.php?id=<?=$hasil['menu_id']?>">Ubah</a> | <a
-                                                    href="deleteFunction.php?id=<?=$hasil['menu_id']?>">Hapus</a>
+                                                    href="deleteFunction.php?id=<?=$hasil['menu_id']?>"
+                                                    id="btn-hapus">Hapus</a>
                                             </td>
                                         </tr>
                                         <?php
@@ -297,7 +301,7 @@ endforeach;
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class=" sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2020</span>
@@ -323,12 +327,12 @@ endforeach;
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ingin logout?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Pilih logout untuk keluar dari halaman admin.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="logout.php">Logout</a>
@@ -355,6 +359,42 @@ endforeach;
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
+    <!-- Sweetalert2 scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/sweetalert/sweetalert2.min.js"></script>
+
+    <script>
+    // Sweetalert confirm script sebelum menghapus data
+    $(document).on('click', '#btn-hapus', function(e) {
+        e.preventDefault()
+        var link = $(this).attr('href')
+        Swal.fire({
+            title: 'Yakin hapus data?',
+            text: "Data menu ini akan dihapus!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Arahin ke href nya lagi
+                window.location = link
+            }
+        })
+    })
+    </script>
+
 </body>
 
 </html>
+
+<?php if (session::exist('hapus')) {?>
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Sukses',
+    text: 'Data menu berhasil terhapus!',
+})
+</script>
+<?php }?>

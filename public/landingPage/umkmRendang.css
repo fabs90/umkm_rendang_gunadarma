@@ -285,7 +285,7 @@ section {
 }
 
 .blogs {
-  background: url(../../assets/dapur.jpg) no-repeat;
+  background: #afa2a2;
   background-size: cover;
   background-position: center center;
   border-radius: 20px;
@@ -341,6 +341,7 @@ section {
 
 .contact .row {
   display: flex;
+  border-radius: 3em;
   background: rgb(239, 211, 160);
   background-size: 1500px;
   flex-wrap: wrap;

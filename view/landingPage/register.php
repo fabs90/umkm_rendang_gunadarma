@@ -1,6 +1,13 @@
 <?php
 require_once "c:/xampp/htdocs/Project/admin_interface_umkm/core/init.php";
 $db = new connection();
+
+if (!session::exist('username')) {
+    // Sebelum redirect kasih flash message
+    session::flash('login', 'Anda harus login!');
+    Redirect::to('../LandingPage/login');
+}
+
 // Pengganti if(isset($_POST['btn_login]))
 if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))) {
     $user = new User();
@@ -49,6 +56,7 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
 <body>
     <div class="container">
         <h2>Register Form</h2>
+        <h5><a href="../admin/table.php">Kembali ke halaman admin</a></h5>
         <form action="register.php" method="POST">
             <div class="form-group">
                 <label for="username">Username:</label>

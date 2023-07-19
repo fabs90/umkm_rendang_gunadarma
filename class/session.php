@@ -1,7 +1,6 @@
-    <?php
+<?php
 class session
 {
-
     public static function exist($name)
     {
         if (isset($_SESSION[$name])) {
@@ -50,5 +49,15 @@ class session
     public static function phpAlert($msg)
     {
         echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+    }
+    public static function swalAlert($msg)
+    {
+        echo '<script type="text/javascript">
+        Swal.fire({
+            text: "' . $msg . '",
+            icon: "success",
+            confirmButtonText: "OK"
+        });
+    </script>';
     }
 }

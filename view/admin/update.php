@@ -54,68 +54,11 @@ if (session::exist('store')) {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Update Form</title>
+    <title>Update Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../public/admin/cottoncandy.css">
 </head>
-<style>
-html {
-    height: 100%;
-}
-
-body {
-    background-image: linear-gradient(to right top,
-            #d16ba5,
-            #c777b9,
-            #ba83ca,
-            #aa8fd8,
-            #9a9ae1,
-            #8aa7ec,
-            #79b3f4,
-            #69bff8,
-            #52cffe,
-            #41dfff,
-            #46eefa,
-            #5ffbf1);
-    background-attachment: fixed;
-}
-
-.btn-grad {
-    background-image: linear-gradient(to right,
-            #ef32d9 0%,
-            #89fffd 51%,
-            #ef32d9 100%);
-    padding: 10px 35px;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: #fff;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    border: none;
-}
-
-.btn-grad:hover {
-    background-position: right center;
-    /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
-}
-
-.buttonDiv {
-    text-align: center;
-}
-
-.card {
-    width: 50%;
-}
-
-@media (max-width: 767px) {
-    .card {
-        width: 100%;
-    }
-}
-</style>
 
 <body>
     <div class="container-fluid py-5">
