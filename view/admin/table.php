@@ -278,8 +278,8 @@ foreach ($result as $hasil):
                                             <td data-content="Harga Diskon">
                                                 <?=number_format($hasil['harga_diskon'], 2)?></td>
                                             <td data-content="Bahan"><?=$hasil['bahan']?></td>
-                                            <td data-content="Aksi"><a
-                                                    href="update.php?id=<?=$hasil['menu_id']?>">Ubah</a> | <a
+                                            <td data-content="Aksi"><a href="update.php?id=<?=$hasil['menu_id']?>"
+                                                    id="btn-update">Ubah</a> | <a
                                                     href="deleteFunction.php?id=<?=$hasil['menu_id']?>"
                                                     id="btn-hapus">Hapus</a>
                                             </td>
@@ -376,6 +376,24 @@ endforeach;
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya, hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Arahin ke href nya lagi
+                window.location = link
+            }
+        })
+    })
+    $(document).on('click', '#btn-update', function(e) {
+        e.preventDefault()
+        var link = $(this).attr('href')
+        Swal.fire({
+            title: 'Yakin ingin ubah data?',
+            text: "Kamu akan masuk ke halaman ubah data!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, ubah!'
         }).then((result) => {
             if (result.isConfirmed) {
                 // Arahin ke href nya lagi
