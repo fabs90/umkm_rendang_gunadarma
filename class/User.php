@@ -25,8 +25,10 @@ class User
 
         // Get info from database
         $data = $this->_db->get_info('users', 'username', $username);
+        // Ubah data password menjadi string, karena kolom varchar
+        $value = "'" . $data['password'] . "'";
         // Check if db pass == input pass
-        if (password_verify($password, $data['password'])) {
+        if (password_verify($password, $value)) {
             return true;
         }
         return false;

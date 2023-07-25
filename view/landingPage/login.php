@@ -27,8 +27,9 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
             } else {
                 $errors[] = "Gagal login";
             }
+        } else {
+            $errors[] = "Cek ulang username dan password";
         }
-        $errors[] = "Cek ulang username dan password";
 
     } else {
         $errors = $validation->error();
@@ -53,7 +54,7 @@ if (input::getValue('submit_btn') && Token::checkToken(input::getValue('token'))
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form action="login.php" class="sign-in-form" method="POST">
+                <form action="<?=$_SERVER['PHP_SELF']?>" class="sign-in-form" method="POST">
                     <h2 class=" title">Login terlebih dahulu</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
